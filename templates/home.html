@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block content %}
+    <article class="media content-section">
+        <div class="media-body">
+            <h4>
+                <a class="article-title" href="#">Total news articles scrapped <text style="color:red">{{ grouping['neutral']|length +  grouping['negative']|length +  grouping['positive']|length }}</text></a>
+            </h4>
+        </div>
+    </article>
+    {% if grouping['negative']|length > grouping['positive']|length %}
+        <img src="{{ url_for('static', filename='negative.png') }}" class="center">
+    {% elif grouping['neutral']|length == grouping['positive']|length %}
+        <img src="{{ url_for('static', filename='neutral.png') }}" class="center">
+    {% else %}
+        <img src="{{ url_for('static', filename='positive.png') }}" class="center">
+    {% endif %}
+
+    <div class="row">
+        <div class="column" style="width: 45%;">
+            <article class="media content-section">
+                <div class="media-body">
+                    <h4>
+                        <a class="article-title" href="#">Negative</a>
+                    </h4>
+                    <p class="article-content"><b>Count</b> - {{ grouping['negative']|length }}</p>
+                    <b>Sources</b> - <br> 
+                    <ul>
+                        {% for article in  grouping['negative'] %}  
+                            <li>
+                                <a href="{{ article['link'] }}" target="_blank" rel="noopener noreferrer">
+                                    {{ article['title'] }}
+                                </a>
+                                <br>
+                                by {{ article['source'] }}
+                            </li>
+                        {% endfor %}  
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <div class="column" style="width: 45%; position: absolute; right: 1px;">
+            <article class="media content-section">
+                <div class="media-body">
+                    <h4>
+                        <a class="article-title" href="#">Positive</a>
+                    </h4>
+                    <p class="article-content"><b>Count</b> - {{ grouping['positive']|length }}</p>
+                    <b>Sources</b> - <br> 
+                    <ul>
+                        {% for article in  grouping['positive'] %}  
+                        <li>
+                            <a href="{{ article['link'] }}" target="_blank" rel="noopener noreferrer">
+                                {{ article['title'] }}
+                            </a>
+                            <br>
+                            by {{ article['source'] }}
+                        </li>
+                    {% endfor %}  
+                    </ul>
+                </div>
+            </article>
+        </div>
+    </div>
+
+{% endblock content %}

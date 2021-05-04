@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+    <article class="media content-section">
+        <div class="media-body">
+            <h4>
+                <form class="example" action="/do_search">
+                    <a class="article-title" href="#">
+                        <input type="text" placeholder="Search.." name="search">
+                        <input style="width: 20%;" type="text" placeholder="Location" name="loc">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                        
+                    </a>
+                    <span class="article-content" href="#">
+                        <br>
+                        
+                        <input type="checkbox" name="hello" value="Khaleej Times">  Khaleej Times
+                        <input type="checkbox" name="hello" value="Al Jazeera">  Al Jazeera
+                        <input type="checkbox" name="hello" value="Arab News">  Arab News
+                        <input type="checkbox" name="hello" value="Asharq Al-awsat">  Asharq Al-awsat
+                        <input type="checkbox" name="hello" value="Trade Arabia">  Trade Arabia
+                        <input type="checkbox" name="hello" value="Trade Arabia">  Trade Arabia
+                        <input type="checkbox" name="hello" value="ZAWYA">  ZAWYA                        
+                    </a>
+                </form>
+            </h4>
+        </div>
+    </article>
+
+{% endblock content %}
